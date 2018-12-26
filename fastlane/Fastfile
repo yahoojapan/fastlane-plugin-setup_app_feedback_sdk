@@ -7,7 +7,7 @@ platform :ios do
       scheme: 'iOSTestApp',
       configuration: 'Release',
       slack_api_token: 'dummy_token',
-      slack_channel: 'your_slack_channel_id',
+      slack_channel: 'your_slack_channel_id'
     )
   end
 end
