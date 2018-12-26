@@ -1,0 +1,7 @@
+shared:
+  image: ruby:2
+
+jobs:
+  test:
+    requires: [~commit, ~pr]
+    template: ruby/test

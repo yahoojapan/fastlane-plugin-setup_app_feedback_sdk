@@ -1,0 +1,12 @@
+default_platform(:ios)
+
+platform :ios do
+  lane :test do
+    setup_app_feedback_sdk(
+      project: './iOSTestApp/iOSTestApp.xcodeproj',
+      scheme: 'iOSTestApp',
+      configuration: 'Release',
+      slack_api_token: 'dummy_token'
+    )
+  end
+end
