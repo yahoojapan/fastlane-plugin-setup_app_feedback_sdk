@@ -1,6 +1,7 @@
 # setup_app_feedback_sdk plugin
 
 [![fastlane Plugin Badge](https://rawcdn.githack.com/fastlane/fastlane/master/fastlane/assets/plugin-badge.svg)](https://rubygems.org/gems/fastlane-plugin-setup_app_feedback_sdk)
+[![CircleCI](https://circleci.com/gh/yahoojapan/fastlane-plugin-setup_app_feedback_sdk.svg?style=svg&circle-token=f62121deb0d23e44786be8171ee2eb916ab343ed)](https://circleci.com/gh/yahoojapan/fastlane-plugin-setup_app_feedback_sdk)
 
 ## Getting Started
 
