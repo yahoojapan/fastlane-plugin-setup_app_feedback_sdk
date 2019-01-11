@@ -58,9 +58,18 @@ jobs:
               mkdir ~/.gem
               echo -e "---\r\n:rubygems_api_key: $RUBYGEMS_API_KEY" > ~/.gem/credentials
               chmod 0600 /home/circleci/.gem/credentials
+
+      - restore_cache:
+          keys:
+          - v1-dependencies-{{ checksum "Gemfile" }}
+          - v1-dependencies-
+      - run:
+          name: install dependencies
+          command: bundle check || bundle install --jobs=4 --retry=3 --path vendor/bundle
+
       - run:
           name: build
-          command: rake build
+          command: bundle exec rake build
       - run:
           name: push
           command: echo gem push pkg/*.gem
