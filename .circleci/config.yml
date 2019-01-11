@@ -72,7 +72,7 @@ jobs:
           command: bundle exec rake build
       - run:
           name: push
-          command: echo gem push pkg/*.gem
+          command: gem push pkg/*.gem
 
 workflows:
   version: 2
