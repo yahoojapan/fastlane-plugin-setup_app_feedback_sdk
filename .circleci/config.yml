@@ -41,3 +41,44 @@ jobs:
       - store_artifacts:
           path: ~/repo/test-results
           destination: test-results
+
+  publish:
+    filters:
+      tags:
+        only: /.*/
+      branches:
+        ignore: /.*/
+    docker:
+       - image: circleci/ruby:2.4.2
+    steps:
+      - checkout
+      - run:
+          name: init-credentials
+          command: |
+              mkdir ~/.gem
+              echo -e "---\r\n:rubygems_api_key: $RUBYGEMS_API_KEY" > ~/.gem/credentials
+              chmod 0600 /home/circleci/.gem/credentials
+
+      - restore_cache:
+          keys:
+          - v1-dependencies-{{ checksum "Gemfile" }}
+          - v1-dependencies-
+      - run:
+          name: install dependencies
+          command: bundle check || bundle install --jobs=4 --retry=3 --path vendor/bundle
+
+      - run:
+          name: build
+          command: bundle exec rake build
+      - run:
+          name: push
+          command: gem push pkg/*.gem
+
+workflows:
+  version: 2
+  build-test-and-publish:
+    jobs:
+      - build
+      - publish:
+          requires:
+            - build
