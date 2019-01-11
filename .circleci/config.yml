@@ -51,6 +51,7 @@ jobs:
     docker:
        - image: circleci/ruby:2.4.2
     steps:
+      - checkout
       - run:
           name: init-credentials
           command: |
