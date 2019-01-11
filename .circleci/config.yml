@@ -43,11 +43,11 @@ jobs:
           destination: test-results
 
   publish:
-    # filters:
-    #   tags:
-    #     only: /.*/
-    #   branches:
-    #     ignore: /.*/
+    filters:
+      tags:
+        only: /.*/
+      branches:
+        ignore: /.*/
     docker:
        - image: circleci/ruby:2.4.2
     steps:
