@@ -60,5 +60,25 @@ EOL
       expect(plist).to include('AppFeedback_Branch')
       expect(plist).to include('dummy_branch')
     end
+
+    it 'Set Slack API URL to Info.plist' do
+      ff = Fastlane::FastFile.new.parse(<<EOL)
+lane :test do
+  setup_app_feedback_sdk(
+        project: __dir__ + '/../iOSTestApp/iOSTestApp.xcodeproj',
+        scheme: 'iOSTestApp',
+        configuration: 'Release',
+        slack_api_token: 'dummy_token',
+        slack_channel: 'dummy_channel',
+        slack_api_url: 'dummy_api_url'
+  )
+end
+EOL
+
+      ff.runner.execute(:test)
+
+      expect(plist).to include('AppFeedback_SlackApiUrl')
+      expect(plist).to include('dummy_api_url')
+    end
   end
 end

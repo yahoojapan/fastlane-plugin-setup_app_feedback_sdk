@@ -14,6 +14,10 @@ module Fastlane
         SetInfoPlistValueAction.run(key: 'AppFeedback_SlackApiToken', value: params[:slack_api_token], path: plist)
         SetInfoPlistValueAction.run(key: 'AppFeedback_SlackChannel', value: params[:slack_channel], path: plist)
 
+        if params[:slack_api_url]
+          SetInfoPlistValueAction.run(key: 'AppFeedback_SlackApiUrl', value: params[:slack_api_url], path: plist)
+        end
+
         if other_action.git_branch
           SetInfoPlistValueAction.run(key: 'AppFeedback_Branch', value: other_action.git_branch, path: plist)
         end
@@ -123,6 +127,11 @@ module Fastlane
                                        env_name: "APP_FEEDBACK_SDK_SLACK_CHANNEL",
                                        description: "Slack channel",
                                        optional: false,
+                                       type: String),
+          FastlaneCore::ConfigItem.new(key: :slack_api_url,
+                                       env_name: "APP_FEEDBACK_SLACK_API_URL",
+                                       description: "Slack API URL",
+                                       optional: true,
                                        type: String),
           FastlaneCore::ConfigItem.new(key: :project,
                                        env_name: 'APP_FEEDBACK_SDK_PROJECT',
