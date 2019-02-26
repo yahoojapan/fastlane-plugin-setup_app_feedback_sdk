@@ -46,7 +46,6 @@ lane :test do
         scheme: 'iOSTestApp',
         configuration: 'Release',
         slack_api_token: 'dummy_token',
-        slack_channel: 'dummy_channel'
   )
 end
 EOL
